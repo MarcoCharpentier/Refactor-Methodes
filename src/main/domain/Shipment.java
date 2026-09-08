@@ -25,7 +25,6 @@ public class Shipment {
     }
 
 
-
     public List<Cargo> getCargo() { return cargo; }
     public void addCargo(Cargo item) { cargo.add(item); }
 

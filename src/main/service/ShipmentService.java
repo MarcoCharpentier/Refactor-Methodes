@@ -31,7 +31,7 @@ public class ShipmentService {
             if (totalWeight > shipment.getShip().getCapacity()) return "ERROR_CAPACITY";
             if (hazardous && !permissionService.canCarryHazardous(shipment.getShip())) return "ERROR_PERMISSION";
 
-            double total = pricingService.calculatePrice(totalWeight, totalValue, hazardous, shipment.getOrigin().getName(), shipment.getOrigin().getSector(), shipment.getOrigin().getSecurityLevel(), shipment.getDestination().getName(), shipment.getDestination().getSector(), shipment.getDestination().getSecurityLevel(), shipment.getCustomer().getLoyaltyYears(), shipment.getCustomer().isActive(), shipment.getCustomer().isSuspended(), shipment.getDepartureDate());
+            double total = pricingService.calculatePrice(shipment, totalWeight, totalValue, hazardous);
             total += pricingService.calculateInsurance(totalValue, hazardous, shipment.getCustomer());
 
             shipment.setTotal(total);

@@ -2,6 +2,7 @@ package main.service;
 
 import main.domain.Customer;
 import main.domain.Planet;
+import main.domain.Shipment;
 
 import java.time.LocalDate;
 
@@ -10,8 +11,17 @@ public class PricingService {
     public double increaseByTenPercent(double price) { return price + price * 0.10; }
     public double increaseByTwentyPercent(double price) { return price + price * 0.20; }
 
-    public double calculatePrice(double weight, double declaredValue, boolean hazardous, String originName, String originSector, int originSecurity, String destinationName, String destinationSector, int destinationSecurity, int loyaltyYears, boolean active, boolean suspended, LocalDate departureDate) {
+        //change all gets from parameters to inside calculatePrice
+    public double calculatePrice(Shipment shipment, double weight, double declaredValue, boolean hazardous) {
         double result = weight * 2.25;
+        final String originSector = shipment.getOrigin().getName();
+        final int originSecurity = shipment.getOrigin().getSecurityLevel();
+        final String destinationSector = shipment.getDestination().getSector();
+        final int destinationSecurity = shipment.getDestination().getSecurityLevel();
+        final int loyaltyYears = shipment.getCustomer().getLoyaltyYears();
+        final boolean active = shipment.getCustomer().isActive();
+        final boolean suspended = shipment.getCustomer().isSuspended();
+        final LocalDate departureDate = shipment.getDepartureDate();
 
 
         if (declaredValue > 10000) result += declaredValue * 0.015;
