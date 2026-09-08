@@ -10,18 +10,22 @@ public class PricingService {
     public double increaseByTenPercent(double price) { return price + price * 0.10; }
     public double increaseByTwentyPercent(double price) { return price + price * 0.20; }
 
-    public double calculatePrice(double weight, double declaredValue, boolean hazardous,
-                                 String originName, String originSector, int originSecurity,
-                                 String destinationName, String destinationSector, int destinationSecurity,
-                                 int loyaltyYears, boolean active, boolean suspended,
-                                 LocalDate departureDate) {
+    public double calculatePrice(double weight, double declaredValue, boolean hazardous, String originName, String originSector, int originSecurity, String destinationName, String destinationSector, int destinationSecurity, int loyaltyYears, boolean active, boolean suspended, LocalDate departureDate) {
         double result = weight * 2.25;
+
+
         if (declaredValue > 10000) result += declaredValue * 0.015;
+
         if (hazardous) result = increaseByTwentyPercent(result);
+
         if (originSecurity >= 4 || destinationSecurity >= 4) result += 125;
+
         if (!originSector.equals(destinationSector)) result += 80;
+
         if (departureDate.getMonthValue() == 12 || departureDate.getMonthValue() <= 2) result += 45;
+
         if (loyaltyYears >= 5 && active && !suspended) result *= 0.90;
+
         return result;
     }
 

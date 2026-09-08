@@ -24,16 +24,27 @@ public class Shipment {
         this.departureDate = departureDate;
     }
 
-    public void addCargo(Cargo item) { cargo.add(item); }
-    public String getReference() { return reference; }
-    public Customer getCustomer() { return customer; }
-    public Planet getOrigin() { return origin; }
-    public Planet getDestination() { return destination; }
-    public Ship getShip() { return ship; }
-    public LocalDate getDepartureDate() { return departureDate; }
+
+
     public List<Cargo> getCargo() { return cargo; }
+    public void addCargo(Cargo item) { cargo.add(item); }
+
     public double getTotal() { return total; }
     public void setTotal(double total) { this.total = total; }
+
     public String getStatus() { return status; }
     public void setStatus(String status) { this.status = status; }
+
+    public String getReference() { return reference; }
+
+    public Customer getCustomer() { return customer; }
+
+    public Planet getOrigin() { return origin; }
+
+    public Planet getDestination() { return destination; }
+
+    public Ship getShip() { return ship; }
+
+    public LocalDate getDepartureDate() { return departureDate; }
+
 }
